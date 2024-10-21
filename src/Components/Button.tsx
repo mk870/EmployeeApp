@@ -1,4 +1,5 @@
 import React from "react";
+import Spinner from "./Spinner";
 
 type Props = {
   text?: string;
@@ -8,6 +9,8 @@ type Props = {
   height?: string;
   icon?: React.ReactNode;
   type?: "outline" | "full";
+  isDisabled?: boolean;
+  isLoading?: boolean;
   onClickFunc: () => void;
 };
 
@@ -19,6 +22,8 @@ const Button: React.FC<Props> = ({
   height,
   icon,
   type,
+  isDisabled,
+  isLoading,
   onClickFunc,
 }) => {
   return (
@@ -37,20 +42,32 @@ const Button: React.FC<Props> = ({
         gap: !text ? "0px" : "5px",
         border: type === "outline" ? "2px solid rgba(38,37,190,1)" : "none",
       }}
-      onClick={(event: React.MouseEvent<HTMLButtonElement>)=>{
-        event.stopPropagation()
-        onClickFunc()
+      disabled={isDisabled}
+      onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+        event.stopPropagation();
+        onClickFunc();
       }}
     >
-      {icon ? icon : null}
-      <span
-        className={`text-[13px] font-sans`}
-        style={{
-          color: type === "outline"?"rgba(38,37,190,1)":textColor ? textColor : "white",
-        }}
-      >
-        {text}
-      </span>
+      {isLoading ? (
+        <Spinner color={type === "outline" ? "rgb(38,37,190)" : "white"} />
+      ) : (
+        <>
+          {icon ? icon : null}
+          <span
+            className={`text-[13px] font-sans`}
+            style={{
+              color:
+                type === "outline"
+                  ? "rgb(38, 37, 190)"
+                  : textColor
+                  ? textColor
+                  : "white",
+            }}
+          >
+            {text}
+          </span>
+        </>
+      )}
     </button>
   );
 };

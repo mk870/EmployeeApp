@@ -3,16 +3,16 @@ export type IRoute = {
   element: JSX.Element;
 };
 
-export type IInputFieldType =
-  | "search"
-  | "firstname"
-  | "lastname"
-  | "department";
+export type IModalType =
+  | "success"
+  | "verification"
 
 export type Employee = {
-  id: number;
-  firstName: string;
-  lastName: string;
+  id?: number;
+  firstname: string;
+  lastname: string;
   department: string;
-  jobTitle: string;
+  jobtitle: string;
 };
+
+

@@ -1,17 +1,18 @@
 import React from "react";
 
-
 type Props = {
   inputValue: string;
   label?: string;
-  placeHolder?:string;
-  setInputValue: React.Dispatch<React.SetStateAction<string>>;
+  placeHolder?: string;
+  onPressEnterFunc?: () => void;
+  setInputValue: (e:string)=>void;
 };
 
 const InputField: React.FC<Props> = ({
   inputValue,
   label,
   placeHolder,
+  onPressEnterFunc,
   setInputValue,
 }) => {
   return (
@@ -20,7 +21,14 @@ const InputField: React.FC<Props> = ({
       <input
         className="w-[100%] h-[40px] border border-gray-500 rounded-[5px] outline-none px-2 font-sans text-[13px]"
         value={inputValue}
-        placeholder={placeHolder?placeHolder:""}
+        placeholder={placeHolder ? placeHolder : ""}
+        onKeyDown={
+          onPressEnterFunc
+            ? (e: React.KeyboardEvent<HTMLInputElement>) => {
+                if (e.key === "Enter") onPressEnterFunc();
+              }
+            : undefined
+        }
         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
           setInputValue(e.target.value)
         }
