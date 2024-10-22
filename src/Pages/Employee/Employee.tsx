@@ -44,12 +44,13 @@ const Employee: React.FC = () => {
 
   const fetchEmployee = () => {
     setError(false);
+    setIsEmployeeLoading(true)
     getEmployee(Number(id))
       .then((res) => {
         setEmployee(res.data.employee);
       })
       .catch((_e) => {
-        setError(false);
+        setError(true);
       })
       .finally(() => setIsEmployeeLoading(false));
   };

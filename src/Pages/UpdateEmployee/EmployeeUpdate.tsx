@@ -26,6 +26,7 @@ const EmployeeUpdate: React.FC = () => {
 
   const fetchEmployee = () => {
     setError(false);
+    setEmployeeIsLoading(true)
     getEmployee(Number(id))
       .then((res) => {
         setEmployee(res.data.employee);
@@ -55,7 +56,7 @@ const EmployeeUpdate: React.FC = () => {
           employee,
         })
           .then((_res) => {
-            toast.success("Employee Updated Sucessfully");
+            toast.success("Employee Updated Successfully");
             setEmployee({
               firstname: "",
               lastname: "",
@@ -145,7 +146,7 @@ const EmployeeUpdate: React.FC = () => {
             />
             {isFieldMissing && (
               <span className="font-sans text-red-600 text-[12px]">
-                All fields are required, please fill in the missing field.
+                All fields are required, please fill in the missing fields.
               </span>
             )}
             <div className="flex mt-2">

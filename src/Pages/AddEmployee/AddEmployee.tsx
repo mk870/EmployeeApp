@@ -6,6 +6,7 @@ import Page from "../../Components/Page";
 import InputField from "../../Components/InputField";
 import Button from "../../Components/Button";
 import { postEmployee } from "../../HttpActions/Mutations";
+import { toastContainerAutoCloseTime } from "../../Utils/Constants";
 
 const AddEmployee: React.FC = () => {
   const [firstname, setFirstName] = useState<string>("");
@@ -26,7 +27,7 @@ const AddEmployee: React.FC = () => {
         firstname,
       })
         .then((_res) => {
-          toast.success("Employee Created Sucessfully");
+          toast.success("Employee Created Successfully");
           setFirstName("");
           setLastName("");
           setDepartment("");
@@ -80,7 +81,7 @@ const AddEmployee: React.FC = () => {
           />
           {isFieldMissing && (
             <span className="font-sans text-red-600 text-[12px]">
-              All fields are required, please fill in the missing field.
+              All fields are required, please fill in the missing fields.
             </span>
           )}
           <div className="flex mt-2">
@@ -95,7 +96,7 @@ const AddEmployee: React.FC = () => {
       </div>
       <ToastContainer
         position="top-right"
-        autoClose={5000}
+        autoClose={toastContainerAutoCloseTime}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick

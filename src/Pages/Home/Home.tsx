@@ -24,6 +24,8 @@ const Home: React.FC = () => {
 
   const fetchEmployees = () => {
     setError("");
+    setEmployees(null)
+    setEmployeesLoading(true)
     getAllEmployees()
       .then((res) => {
         setEmployees(res.data);
@@ -46,6 +48,7 @@ const Home: React.FC = () => {
     if (searchQuery) {
       setError("");
       setSearchQueryLoading(true);
+      setEmployees(null)
       searchEmployee(searchQuery)
         .then((res) => {
           setSearchQuery("");

@@ -1,6 +1,6 @@
 import React from "react";
 
-import employeeImage from "../Assets/employees.png";
+import employeeImage from "../../../Assets/employees.png";
 
 const EmptyEmployeeList: React.FC = () => {
   return (
